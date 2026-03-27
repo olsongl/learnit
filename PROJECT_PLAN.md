@@ -14,21 +14,21 @@ Cmart is a **credential-verified course marketplace** inspired by Skool. Sellers
 
 ## 2. Tech Stack
 
-| Layer | Technology | Rationale |
-|-------|-----------|-----------|
-| **Framework** | Next.js 14 (App Router) | Full-stack React, SSR/SSG, API routes, excellent mobile-responsive support, easy AWS deployment |
-| **Language** | TypeScript | Type safety, better DX, fewer runtime errors |
-| **Database** | MongoDB Atlas (free tier) | Flexible document schema for varied course content, free tier for development |
-| **ODM** | Mongoose | Mature MongoDB ODM, schema validation, middleware hooks |
-| **Auth** | NextAuth.js v5 | Free, extensible, supports multiple providers, session management |
-| **Payments** | Stripe + Stripe Connect | Marketplace payments with split payouts, subscription billing |
-| **File Storage** | AWS S3 (+ local fallback) | Video/file uploads, presigned URLs for secure access |
-| **Video** | Self-hosted on S3 | HLS streaming via CloudFront CDN for performance |
-| **Styling** | Tailwind CSS + shadcn/ui | Rapid UI development, mobile-first, professional component library |
-| **State Management** | React Query (TanStack Query) | Server state caching, optimistic updates |
-| **Email** | AWS SES (or Resend free tier) | Transactional emails (verification, receipts, notifications) |
-| **Deployment** | AWS (Amplify or EC2 + Docker) | User's hosting preference |
-| **Monitoring** | CloudWatch (included with AWS) | Logs, metrics, alarms |
+| Layer                      | Technology                     | Rationale                                                                                       |
+| -------------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------- |
+| **Framework**        | Next.js 14 (App Router)        | Full-stack React, SSR/SSG, API routes, excellent mobile-responsive support, easy AWS deployment |
+| **Language**         | TypeScript                     | Type safety, better DX, fewer runtime errors                                                    |
+| **Database**         | MongoDB Atlas (free tier)      | Flexible document schema for varied course content, free tier for development                   |
+| **ODM**              | Mongoose                       | Mature MongoDB ODM, schema validation, middleware hooks                                         |
+| **Auth**             | NextAuth.js v5                 | Free, extensible, supports multiple providers, session management                               |
+| **Payments**         | Stripe + Stripe Connect        | Marketplace payments with split payouts, subscription billing                                   |
+| **File Storage**     | AWS S3 (+ local fallback)      | Video/file uploads, presigned URLs for secure access                                            |
+| **Video**            | Self-hosted on S3              | HLS streaming via CloudFront CDN for performance                                                |
+| **Styling**          | Tailwind CSS + shadcn/ui       | Rapid UI development, mobile-first, professional component library                              |
+| **State Management** | React Query (TanStack Query)   | Server state caching, optimistic updates                                                        |
+| **Email**            | AWS SES (or Resend free tier)  | Transactional emails (verification, receipts, notifications)                                    |
+| **Deployment**       | AWS (Amplify or EC2 + Docker)  | User's hosting preference                                                                       |
+| **Monitoring**       | CloudWatch (included with AWS) | Logs, metrics, alarms                                                                           |
 
 ---
 
@@ -36,11 +36,11 @@ Cmart is a **credential-verified course marketplace** inspired by Skool. Sellers
 
 ### 3.1 Role Types
 
-| Role | Description |
-|------|------------|
-| **Student** | Browse, purchase, consume courses, leave reviews |
-| **Teacher** | All student abilities + create/manage courses, set pricing, view earnings |
-| **Admin** | Full platform control — verify credentials, moderate content, analytics dashboard |
+| Role              | Description                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| **Student** | Browse, purchase, consume courses, leave reviews                                   |
+| **Teacher** | All student abilities + create/manage courses, set pricing, view earnings          |
+| **Admin**   | Full platform control — verify credentials, moderate content, analytics dashboard |
 
 - Users select their intended role at signup (Student or Teacher)
 - Any user can later upgrade to Teacher (triggers credential submission flow)
@@ -227,6 +227,7 @@ Category {
 ```
 
 Examples:
+
 - Fitness (parent: null) → Bench Press Programming, Deadlifting, Yoga
 - Nutrition (parent: null) → Holistic Eastern Medicine, Meal Planning, Sports Nutrition
 - Business (parent: null) → Marketing, Freelancing, E-commerce
@@ -339,10 +340,10 @@ You Receive:             $47.50
 
 ### 5.4 Subscription Types
 
-| Subscription | Who Pays | Amount | Stripe Product |
-|-------------|----------|--------|---------------|
-| Teacher Platform Access | Teacher → Cmart | $5/mo (beta) | Stripe Subscription |
-| Monthly Course Access | Student → Teacher | Varies | Stripe Subscription via Connect |
+| Subscription            | Who Pays           | Amount       | Stripe Product                  |
+| ----------------------- | ------------------ | ------------ | ------------------------------- |
+| Teacher Platform Access | Teacher → Cmart   | $5/mo (beta) | Stripe Subscription             |
+| Monthly Course Access   | Student → Teacher | Varies       | Stripe Subscription via Connect |
 
 ### 5.5 Webhook Events to Handle
 
@@ -395,57 +396,57 @@ cmart-uploads/
 
 ### 7.1 Public Pages
 
-| Route | Page | Description |
-|-------|------|------------|
-| `/` | Home | Hero, featured courses, categories, CTA |
-| `/courses` | Browse Courses | Search, filter by category/price/rating, sort |
-| `/courses/[slug]` | Course Detail | Description, modules preview, teacher profile, reviews, purchase CTA |
-| `/categories` | Category Browser | All overarching categories with sub-categories |
-| `/categories/[slug]` | Category Page | Courses in this category |
-| `/teachers/[id]` | Teacher Profile | Bio, credentials (verified badge), courses, ratings |
-| `/auth/signin` | Sign In | Email/password + OAuth |
-| `/auth/signup` | Sign Up | Registration + role selection |
-| `/auth/verify-email` | Email Verification | Confirmation page |
-| `/pricing` | Seller Pricing | $5/mo subscription info for teachers |
+| Route                  | Page               | Description                                                          |
+| ---------------------- | ------------------ | -------------------------------------------------------------------- |
+| `/`                  | Home               | Hero, featured courses, categories, CTA                              |
+| `/courses`           | Browse Courses     | Search, filter by category/price/rating, sort                        |
+| `/courses/[slug]`    | Course Detail      | Description, modules preview, teacher profile, reviews, purchase CTA |
+| `/categories`        | Category Browser   | All overarching categories with sub-categories                       |
+| `/categories/[slug]` | Category Page      | Courses in this category                                             |
+| `/teachers/[id]`     | Teacher Profile    | Bio, credentials (verified badge), courses, ratings                  |
+| `/auth/signin`       | Sign In            | Email/password + OAuth                                               |
+| `/auth/signup`       | Sign Up            | Registration + role selection                                        |
+| `/auth/verify-email` | Email Verification | Confirmation page                                                    |
+| `/pricing`           | Seller Pricing     | $5/mo subscription info for teachers                                 |
 
 ### 7.2 Student Dashboard (Authenticated)
 
-| Route | Page | Description |
-|-------|------|------------|
-| `/dashboard` | Student Home | Enrolled courses, progress, recommendations |
-| `/dashboard/courses` | My Courses | All enrolled courses with progress |
-| `/dashboard/courses/[id]/learn` | Course Player | Video player, lesson content, progress tracking |
-| `/dashboard/wishlist` | Wishlist | Saved courses |
-| `/dashboard/settings` | Account Settings | Profile, password, 2FA, notifications |
-| `/dashboard/billing` | Billing | Payment history, active subscriptions |
+| Route                             | Page             | Description                                     |
+| --------------------------------- | ---------------- | ----------------------------------------------- |
+| `/dashboard`                    | Student Home     | Enrolled courses, progress, recommendations     |
+| `/dashboard/courses`            | My Courses       | All enrolled courses with progress              |
+| `/dashboard/courses/[id]/learn` | Course Player    | Video player, lesson content, progress tracking |
+| `/dashboard/wishlist`           | Wishlist         | Saved courses                                   |
+| `/dashboard/settings`           | Account Settings | Profile, password, 2FA, notifications           |
+| `/dashboard/billing`            | Billing          | Payment history, active subscriptions           |
 
 ### 7.3 Teacher Dashboard (Authenticated + Verified Teacher)
 
-| Route | Page | Description |
-|-------|------|------------|
-| `/teacher` | Teacher Home | Earnings overview, recent enrollments, course stats |
-| `/teacher/courses` | My Courses | All created courses, status, quick actions |
-| `/teacher/courses/new` | Create Course | Step-by-step course builder |
-| `/teacher/courses/[id]/edit` | Edit Course | Modules, lessons, pricing, settings |
-| `/teacher/courses/[id]/analytics` | Course Analytics | Enrollment, revenue, completion rates |
-| `/teacher/credentials` | My Credentials | Upload/manage credentials, verification status |
-| `/teacher/earnings` | Earnings | Revenue breakdown, payout history, Stripe dashboard link |
-| `/teacher/subscription` | Subscription | Manage $5/mo platform subscription |
-| `/teacher/bundles` | Bundles | Create/manage course bundles |
-| `/teacher/profile` | Public Profile Editor | Edit bio, social links, headline |
+| Route                               | Page                  | Description                                              |
+| ----------------------------------- | --------------------- | -------------------------------------------------------- |
+| `/teacher`                        | Teacher Home          | Earnings overview, recent enrollments, course stats      |
+| `/teacher/courses`                | My Courses            | All created courses, status, quick actions               |
+| `/teacher/courses/new`            | Create Course         | Step-by-step course builder                              |
+| `/teacher/courses/[id]/edit`      | Edit Course           | Modules, lessons, pricing, settings                      |
+| `/teacher/courses/[id]/analytics` | Course Analytics      | Enrollment, revenue, completion rates                    |
+| `/teacher/credentials`            | My Credentials        | Upload/manage credentials, verification status           |
+| `/teacher/earnings`               | Earnings              | Revenue breakdown, payout history, Stripe dashboard link |
+| `/teacher/subscription`           | Subscription          | Manage $5/mo platform subscription                       |
+| `/teacher/bundles`                | Bundles               | Create/manage course bundles                             |
+| `/teacher/profile`                | Public Profile Editor | Edit bio, social links, headline                         |
 
 ### 7.4 Admin Dashboard
 
-| Route | Page | Description |
-|-------|------|------------|
-| `/admin` | Admin Home | Key metrics, pending actions, system health |
-| `/admin/credentials` | Credential Review | Queue of pending teacher credentials, approve/reject |
-| `/admin/users` | User Management | Search/filter users, view profiles, ban/suspend |
-| `/admin/courses` | Course Management | All courses, status management, featured selection |
-| `/admin/categories` | Category Management | CRUD categories and sub-categories |
-| `/admin/analytics` | Platform Analytics | Revenue, signups, enrollments, retention charts |
-| `/admin/transactions` | Transaction Log | All payments, refunds, disputes |
-| `/admin/settings` | Platform Settings | Subscription price, commission rate, feature flags |
+| Route                   | Page                | Description                                          |
+| ----------------------- | ------------------- | ---------------------------------------------------- |
+| `/admin`              | Admin Home          | Key metrics, pending actions, system health          |
+| `/admin/credentials`  | Credential Review   | Queue of pending teacher credentials, approve/reject |
+| `/admin/users`        | User Management     | Search/filter users, view profiles, ban/suspend      |
+| `/admin/courses`      | Course Management   | All courses, status management, featured selection   |
+| `/admin/categories`   | Category Management | CRUD categories and sub-categories                   |
+| `/admin/analytics`    | Platform Analytics  | Revenue, signups, enrollments, retention charts      |
+| `/admin/transactions` | Transaction Log     | All payments, refunds, disputes                      |
+| `/admin/settings`     | Platform Settings   | Subscription price, commission rate, feature flags   |
 
 ---
 
@@ -747,12 +748,14 @@ cmart/
 ### 10.3 Key UX Flows
 
 **Student Purchase Flow:**
+
 1. Browse/search → Course card click → Course detail page
 2. View teacher credentials (verified badge, click to see details)
 3. Select pricing tier (if applicable) → "Enroll Now" button
 4. Stripe Checkout → Success page → Redirect to course player
 
 **Teacher Course Creation Flow:**
+
 1. Teacher dashboard → "Create Course" → Step wizard:
    - Step 1: Basic info (title, description, category, thumbnail)
    - Step 2: Content (add modules → add lessons, upload media)
@@ -764,28 +767,29 @@ cmart/
 
 ## 11. Security Considerations
 
-| Area | Approach |
-|------|---------|
-| **Authentication** | NextAuth with JWT + secure httpOnly cookies, CSRF protection |
-| **Password Storage** | bcrypt with salt rounds ≥ 12 |
-| **API Protection** | Middleware-based auth guards, role-based route protection |
-| **Input Validation** | Zod schemas on every API endpoint |
-| **File Uploads** | Type validation, size limits, virus scanning (ClamAV, future), presigned URLs |
-| **SQL/NoSQL Injection** | Mongoose parameterized queries, no raw query strings |
-| **XSS** | React's built-in escaping, DOMPurify for rich text |
-| **CORS** | Strict origin whitelist |
-| **Rate Limiting** | Per-endpoint rate limits (upstash/ratelimit or custom) |
-| **Credential Files** | Private S3 bucket, presigned URLs with short expiry, admin-only access |
-| **Stripe Webhooks** | Signature verification on all webhook endpoints |
-| **HTTPS** | Enforced in production via AWS ALB/CloudFront |
-| **Content Security Policy** | Strict CSP headers |
+| Area                              | Approach                                                                      |
+| --------------------------------- | ----------------------------------------------------------------------------- |
+| **Authentication**          | NextAuth with JWT + secure httpOnly cookies, CSRF protection                  |
+| **Password Storage**        | bcrypt with salt rounds ≥ 12                                                 |
+| **API Protection**          | Middleware-based auth guards, role-based route protection                     |
+| **Input Validation**        | Zod schemas on every API endpoint                                             |
+| **File Uploads**            | Type validation, size limits, virus scanning (ClamAV, future), presigned URLs |
+| **SQL/NoSQL Injection**     | Mongoose parameterized queries, no raw query strings                          |
+| **XSS**                     | React's built-in escaping, DOMPurify for rich text                            |
+| **CORS**                    | Strict origin whitelist                                                       |
+| **Rate Limiting**           | Per-endpoint rate limits (upstash/ratelimit or custom)                        |
+| **Credential Files**        | Private S3 bucket, presigned URLs with short expiry, admin-only access        |
+| **Stripe Webhooks**         | Signature verification on all webhook endpoints                               |
+| **HTTPS**                   | Enforced in production via AWS ALB/CloudFront                                 |
+| **Content Security Policy** | Strict CSP headers                                                            |
 
 ---
 
 ## 12. Implementation Phases
 
 ### Phase 1: Foundation (Week 1-2)
-- [x] Project plan ← you are here
+
+- [X] Project plan ← you are here
 - [ ] Next.js project scaffolding with TypeScript
 - [ ] Tailwind CSS + shadcn/ui setup
 - [ ] MongoDB connection + Mongoose models
@@ -795,6 +799,7 @@ cmart/
 - [ ] Environment config (.env, docker-compose for local MongoDB)
 
 ### Phase 2: Core User Flows (Week 3-4)
+
 - [ ] Student dashboard shell
 - [ ] Teacher dashboard shell
 - [ ] Teacher credential upload + submission
@@ -803,6 +808,7 @@ cmart/
 - [ ] User profile pages (public teacher profile)
 
 ### Phase 3: Course System (Week 5-7)
+
 - [ ] Course creation wizard (multi-step form)
 - [ ] Module & lesson CRUD
 - [ ] File upload to S3 (presigned URLs)
@@ -813,6 +819,7 @@ cmart/
 - [ ] Course detail page
 
 ### Phase 4: Payments (Week 8-9)
+
 - [ ] Stripe integration setup
 - [ ] Teacher Stripe Connect onboarding
 - [ ] Teacher $5/mo subscription
@@ -823,6 +830,7 @@ cmart/
 - [ ] Transaction recording
 
 ### Phase 5: Learning Experience (Week 10)
+
 - [ ] Course player / learning view
 - [ ] Progress tracking (lesson completion, percentage)
 - [ ] Review & rating system
@@ -830,6 +838,7 @@ cmart/
 - [ ] Certificate of completion (stretch)
 
 ### Phase 6: Admin & Analytics (Week 11)
+
 - [ ] Admin dashboard with key metrics
 - [ ] User management (search, suspend, role changes)
 - [ ] Course moderation tools
@@ -837,6 +846,7 @@ cmart/
 - [ ] Platform settings panel
 
 ### Phase 7: Polish & Launch Prep (Week 12)
+
 - [ ] Responsive testing across devices
 - [ ] Performance optimization (image optimization, lazy loading, caching)
 - [ ] SEO (meta tags, OG images, sitemap)
@@ -896,15 +906,32 @@ AWS_SES_FROM_EMAIL=noreply@cmart.com
 These are questions I'll ask as we build:
 
 1. **Refund policy** — Do we support refunds? If so, within what window? Who absorbs the Stripe fee on refunds?
+   No refund policy, all purchases are final
 2. **Course approval** — Should courses require admin approval before going live, or can verified teachers publish immediately?
+   Courses should require admin approval from the admin page
 3. **Teacher free trial** — Should teachers get a free trial period before the $5/mo subscription kicks in?
+   1 week free trial
 4. **Search** — Basic MongoDB text search for MVP, or integrate Algolia/Meilisearch for better results?
+
+   Meilisearch for better results
 5. **Notifications** — Email only, or in-app notifications too?
+
+   Email and in app notifications
 6. **Dispute resolution** — How do we handle student complaints about course quality?
+
+   A report feature for courses for internal admin review (aka just a notification of a report on admin view) and a 5 star rating system with comment (required min 100 characters)
 7. **Content DRM** — Any concern about video piracy, or acceptable risk for MVP?
+
+   Acceptable risk
 8. **Analytics depth** — Simple counts/totals, or do we want time-series charts from day one?
+
+   Analytic depth can be simple to start, not a priority
 9. **Internationalization** — English only for MVP?
+
+   Allow course seller to write in any language
 10. **Landing page** — Marketing-style landing page or jump straight to course browsing?
+
+    Call to action and straight to course browsing, once a user goes to create an account is when we finally ask if they are student or teacher
 
 ---
 
